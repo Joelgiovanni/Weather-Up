@@ -14,6 +14,7 @@ class App extends Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
+    icon: undefined,
     error: undefined
   }
 
@@ -26,6 +27,7 @@ class App extends Component {
     if (city && country) {
       console.log(data);
       this.setState({
+        icon: "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png",
         temperature: data.main.temp,
         city: data.name,
         country: data.sys.country,
@@ -46,6 +48,7 @@ class App extends Component {
         <Title />
         <Form getWeather={this.getWeather}/>
         <Weather 
+          icon={this.state.icon}
           temperature={this.state.temperature}
           city={this.state.city}
           country={this.state.country}
